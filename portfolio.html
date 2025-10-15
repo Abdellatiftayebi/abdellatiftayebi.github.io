@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdellatif Tayebi - Portfolio IA & Data Science</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .profile-image-container {
+            animation: fadeInLeft 0.8s ease;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .contact-info a:hover {
+            transform: translateY(-3px);
+        }
+
+       
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+       
+        section {
+            padding: 60px 20px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #667eea;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        .about-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .timeline-item h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+
+        .timeline-item .date {
+            color: #764ba2;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .timeline-item ul {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-item li {
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .project-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-body ul {
+            padding-left: 1.5rem;
+            color: #555;
+        }
+
+        .project-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .contact-info-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .info-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .info-item i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .info-item h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .form-message {
+            display: none;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .form-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .form-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+       
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <nav>
+        <ul>
+            <li><a href="#about">À Propos</a></li>
+            <li><a href="#education">Formation</a></li>
+            <li><a href="#experience">Expérience</a></li>
+            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#projects">Projets</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    
+    <div class="hero">
+        <div class="hero-content">
+            <div class="profile-image-container">
+                <img src="photo.jpg" alt="Abdellatif Tayebi" class="profile-image">
+            </div>
+            <div class="hero-text">
+                <h1>Abdellatif Tayebi</h1>
+                <p>Ingénieur en Intelligence Artificielle & Data Science</p>
+                <div class="contact-info">
+                    <a href="tel:+212648562861"><i class="fas fa-phone"></i> +212 648 562 861</a>
+                    <a href="mailto:abdellatif.tayebi.23@ump.ac.ma"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="https://linkedin.com/in/abdellatif-tayebi-55986b2b3" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://github.com/Abdellatiftayebi" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="#"><i class="fas fa-map-marker-alt"></i> Casablanca, Maroc</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <section id="about">
+        <div class="container">
+            <h2>À Propos</h2>
+            <div class="about-content">
+                <p>Actuellement en dernière année du cycle d'ingénieur d'État en Intelligence Artificielle à l'ENIAD de Berkane, j'ai acquis de solides compétences en apprentissage automatique (Machine Learning), en traitement du langage naturel (NLP). Rigoureux et proactif, je souhaite mettre mon expertise technique et ma capacité d'analyse au service d'un projet d'envergure dans le domaine de la Data Science ou de l'ingénierie IA.</p>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="education" style="background: white;">
+        <div class="container">
+            <h2>Formation</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Diplôme d'Ingénieur d'État en Intelligence Artificielle</h3>
+                    <span class="date"><i class="fas fa-calendar-alt"></i> 2023 - Aujourd'hui</span>
+                    <p><strong>École Nationale Supérieure de l'Intelligence Artificielle et du Digital (ENIAD)</strong> - Berkane</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>DEUST en Mathématiques, Informatique et Physique (MIP)</h3>
+                    <span class="date"><i class="fas fa-calendar-alt"></i> 2021 - 2023</span>
+                    <p><strong>Faculté des Sciences et Techniques (FST)</strong> - Errachidia</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Baccalauréat en Sciences Mathématiques A</h3>
+                    <span class="date"><i class="fas fa-calendar-alt"></i> 2019 - 2021</span>
+                    <p><strong>Lycée Qualifiant Sidi Ahmed Bennacer</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <section id="experience">
+        <div class="container">
+            <h2>Expérience Professionnelle</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Stage en développement IA – Chatbot intelligent d'accompagnement client</h3>
+                    <span class="date"><i class="fas fa-calendar-alt"></i> Juillet 2025 – Septembre 2025</span>
+                    <p><strong>SAT – Smart Automation Technologies</strong> - Tanger</p>
+                    <ul>
+                        <li>Conception et développement d'un chatbot intelligent capable de détecter les points de friction</li>
+                        <li>Mise en place d'un pipeline conversationnel : NLP (extraction d'entités, similarité sémantique, traduction)</li>
+                        <li>Architecture multi-agents (SMA) pour la communication entre modules</li>
+                        <li>Évaluation du système : précision 86%, rappel 72%, F1-score 73%</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Stage – Développement d'un Chatbot de Documentation (DocuBot)</h3>
+                    <span class="date"><i class="fas fa-calendar-alt"></i> Juillet 2025 – Septembre 2025</span>
+                    <p><strong>TECHNOLOGY & TELECOM</strong> - Safi</p>
+                    <ul>
+                        <li>Contribution au développement de "DocuBot", un chatbot intelligent basé sur une architecture RAG (Retrieval-Augmented Generation) et Elasticsearch, visant à automatiser le support technique et à fournir une assistance documentaire instantanée. Le projet analyse les interactions des utilisateurs pour améliorer continuellement sa base de connaissances et garantir la pertinence des réponses. Stack Technique & Architecture : 🔹 Moteur de Recherche : Utilisation d'Elasticsearch pour l'indexation des documents et la recherche sémantique basée sur les vecteurs (embeddings). 🔹 Pipeline de Données : Développement de scripts Python pour l'ingestion, le traitement des questions-réponses et leur enrichissement sémantique. 🔹 Amélioration Continue : Conception d'un système de feedback pour identifier les lacunes dans la base de connaissances et permettre une mise à jour continue du chatbot. 🔹 Automatisation : Mise en place de tâches planifiées (Cron jobs) pour automatiser l'exécution des scripts de traitement, garantissant un système évolutif et toujours à jour.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <section id="skills" style="background: white;">
+        <div class="container">
+            <h2>Compétences</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> Intelligence Artificielle</h3>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Deep Learning</span>
+                    <span class="skill-tag">NLP</span>
+                    <span class="skill-tag">GenAI</span>
+                    <span class="skill-tag">LLM Engineering</span>
+                    <span class="skill-tag">Multi-Agents (SMA)</span>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Frameworks & Librairies</h3>
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">Keras</span>
+                    <span class="skill-tag">Scikit-Learn</span>
+                    <span class="skill-tag">LangChain</span>
+                    <span class="skill-tag">LangGraph</span>
+                    <span class="skill-tag">CrewAI</span>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-chart-line"></i> Data Science</h3>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">Matplotlib</span>
+                    <span class="skill-tag">Seaborn</span>
+                    <span class="skill-tag">RAG</span>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-calculator"></i> Fondements</h3>
+                    <span class="skill-tag">Statistiques</span>
+                    <span class="skill-tag">Probabilités</span>
+                    <span class="skill-tag">Algèbre Linéaire</span>
+                    <span class="skill-tag">Apprentissage Supervisé</span>
+                    <span class="skill-tag">Apprentissage Non-Supervisé</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="projects">
+        <div class="container">
+            <h2>Projets Réalisés</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3><i class="fas fa-file-pdf"></i> Application "Chat with PDF"</h3>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li>Développement basé sur l'Architecture RAG</li>
+                            <li>Conversation avec le contenu de documents PDF</li>
+                            <li>Pipeline complet : segmentation, embeddings, base vectorielle</li>
+                            <li>Orchestration avec LangChain</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3><i class="fas fa-futbol"></i> Assistance Tactique pour Entraîneurs</h3>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li>Plateforme basée sur système multi-agents</li>
+                            <li>Analyse stratégique des adversaires</li>
+                            <li>Collecte et analyse de données sur les équipes</li>
+                            <li>Utilisation de CrewAI</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3><i class="fas fa-users"></i> Système Multi-Agents de Recrutement</h3>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li>Automatisation complète de gestion de candidatures</li>
+                            <li>Connexion e-mail automatique</li>
+                            <li>Analyse et extraction de CV (PDF/DOCX)</li>
+                            <li>Sélection intelligente et communication automatisée</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 style="color: white;">Me Contacter</h2>
+            <div class="contact-container">
+                <div class="contact-info-box">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email</h4>
+                        <p>abdellatif.tayebi.23@ump.ac.ma</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <h4>Téléphone</h4>
+                        <p>+212 648 562 861</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Localisation</h4>
+                        <p>Casablanca, Maroc</p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <div id="formMessage" class="form-message"></div>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name"><i class="fas fa-user"></i> Nom Complet</label>
+                            <input type="text" id="name" name="name" required placeholder="Votre nom">
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="email" name="email" required placeholder="votre.email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject"><i class="fas fa-tag"></i> Sujet</label>
+                            <input type="text" id="subject" name="subject" required placeholder="Objet de votre message">
+                        </div>
+                        <div class="form-group">
+                            <label for="message"><i class="fas fa-comment"></i> Message</label>
+                            <textarea id="message" name="message" required placeholder="Votre message..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            </i> Envoyer le Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer>
+        <p>&copy; 2025 Abdellatif Tayebi </p>
+        <p>Ingénieur en Intelligence Artificielle | Casablanca, Maroc</p>
+    </footer>
+
+    <script>
+        
+        (function(){
+            emailjs.init("Kc1HJ7n_QQr2a-dcq"); 
+        })();
+
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item, .skill-category, .project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            
+            formMessage.textContent = 'Envoi en cours...';
+            formMessage.className = 'form-message';
+            formMessage.style.display = 'block';
+            formMessage.style.background = '#cce5ff';
+            formMessage.style.color = '#004085';
+            
+            
+            const templateParams = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+            
+            
+            emailjs.send('service_0rw7738', 'template_43swcsf', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    formMessage.textContent = 'Message envoyé avec succès ! Je vous répondrai bientôt.';
+                    formMessage.className = 'form-message success';
+                    contactForm.reset();
+                    
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    formMessage.textContent = ' Erreur lors de l\'envoi. Veuillez réessayer !';
+                    formMessage.className = 'form-message error';
+                });
+        });
+    </script>
+</body>
+</html>
