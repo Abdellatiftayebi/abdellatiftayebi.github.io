@@ -489,6 +489,141 @@
                 gap: 0.5rem;
             }
         }
+        
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.certificate-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.certificate-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.certificate-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.certificate-card:hover .certificate-image {
+    transform: scale(1.05);
+}
+
+.certificate-info {
+    padding: 1.5rem;
+}
+
+.certificate-info h3 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.certificate-info .issuer {
+    color: #764ba2;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.certificate-info .date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.certificate-info p {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.certificate-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+/* Modal pour agrandir les certificats */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: zoomIn 0.3s;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-modal:hover {
+    color: #bbb;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: translate(-50%, -50%) scale(0); }
+    to { transform: translate(-50%, -50%) scale(1); }
+}
+
+@media (max-width: 768px) {
+    .certificates-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        max-width: 95%;
+        max-height: 80%;
+    }
+}
     </style>
 </head>
 <body>
@@ -501,6 +636,7 @@
             <li><a href="#skills">Compétences</a></li>
             <li><a href="#projects">Projets</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="#certificates">Certificats</a></li>
         </ul>
     </nav>
 
@@ -673,9 +809,61 @@
                         </ul>
                     </div>
                 </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3><i class="fas fa-users"></i> Chatbot Intelligent Multimodal (IA Locale & Générative)</h3>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li>Ce projet consiste en la conception d’un chatbot avancé capable de comprendre et traiter du texte, des images et de l’audio, entièrement exécuté en local grâce à l’intégration du modèle Ollama. L’architecture s’appuie sur FastAPI, une base de données PostgreSQL pour enregistrer les vector , et un pipeline d’indexation permettant d’enrichir dynamiquement les connaissances du système. Le chatbot combine des capacités RAG hybride (lexicale + semantique), une interface conversationnelle fluide et des traitements multimodaux pour offrir une assistance intelligente, et totalement autonome.</li>
+                
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+    <section id="certificates" style="background: white;">
+    <div class="container">
+        <h2>Certificats & Formations</h2>
+        <div class="certificates-grid">
+            
+            <!-- Certificat 1 - Exemple -->
+            <div class="certificate-card" onclick="openModal('cert1')">
+                <img src="certificate_udemyImage.jpg" alt="Udemy Data Science Certificate" class="certificate-image" id="cert1">
+                <div class="certificate-info">
+                    <h3>2025 Master class on Data Science using Python A-Z for ML</h3>
+                    <p class="issuer"><i class="fas fa-award"></i> Udemy - Toppers Bootcamp</p>
+                    <p class="date"><i class="fas fa-calendar"></i> Novembre 2025</p>
+                    <p>Formation complète en Data Science et Machine Learning avec Python. Maîtrise des bibliothèques essentielles (NumPy, Pandas, Scikit-learn) et développement de projets ML de bout en bout.</p>
+                    <span class="certificate-badge">Data Science</span>
+                    <span class="certificate-badge">Python</span>
+                    <span class="certificate-badge">Machine Learning</span>
+                </div>
+            </div>
+
+            <!-- Certificat 2 - Exemple -->
+            <div class="certificate-card" onclick="openModal('cert2')">
+                <img src="certificateoracle.png" alt="Oracle Certified Professional" class="certificate-image" id="cert2">
+                <div class="certificate-info">
+                    <h3>Oracle Cloud Infrastructure 2025 Certified Generative AI Professional</h3>
+                    <p class="issuer"><i class="fas fa-award"></i>  Oracle University</p>
+                    <p class="date"><i class="fas fa-calendar"></i> Octobre 2025</p>
+                    <p>Certification professionnelle Oracle en Intelligence Artificielle Générative et Infrastructure Cloud, validant l'expertise dans le déploiement et la gestion de solutions IA sur Oracle Cloud.</p>
+                    <span class="certificate-badge">Cloud AI</span>
+                    <span class="certificate-badge">GenAI</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Modal pour afficher les certificats en grand -->
+<div id="certificateModal" class="modal" onclick="closeModal()">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
 
     
     <section id="contact" class="contact-section">
@@ -815,6 +1003,25 @@
                     formMessage.className = 'form-message error';
                 });
         });
+        function openModal(imgId) {
+    const modal = document.getElementById('certificateModal');
+    const modalImg = document.getElementById('modalImage');
+    const img = document.getElementById(imgId);
+    
+    modal.style.display = 'block';
+    modalImg.src = img.src;
+}
+
+function closeModal() {
+    document.getElementById('certificateModal').style.display = 'none';
+}
+
+// Fermer le modal avec la touche Escape
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
     </script>
 </body>
 </html>
